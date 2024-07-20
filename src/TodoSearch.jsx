@@ -9,7 +9,7 @@ function TodoSearch(
 
     return(
         <input 
-        placeholder="Inserte su tarea" 
+        placeholder="search your to do" 
         className='TodoSearch'
         value={searchValue}
         onChange={(event) =>{
