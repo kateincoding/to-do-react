@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-// components
+// components\
+import React from 'react'
 import { TodoCounter } from './TodoCounter'
 import { TodoSearch } from './TodoSearch'
 import { TodoList } from './TodoList'
@@ -9,7 +10,7 @@ import { CreateTodoButton } from './CreateTodoButton'
 import { TodoItem } from './TodoItem'
 import './App.css'
 
-import React from 'react'
+
 
 
 let Tasks = [
@@ -20,39 +21,40 @@ let Tasks = [
   { id: 5, task: 'sleep', completed: false }
 ]
 
-function useLocalStorage(itemName, initialValue){
-  
-  const localStorageItem = localStorage.getItem('itemName');
-  let parsedItem;
+// localStorage.setItem('TODOS_V1', JSON.stringify(Tasks));
+// localStorage.removeItem('TODOS_V1');
 
-  if(!localStorageItem){
-    localStorage.setItem('itemName', JSON.stringify(initialValue));
+function useLocalStorage(itemName, initialValue) {
+  const localStorageItem = localStorage.getItem(itemName);
+
+  let parsedItem;
+  
+  if (!localStorageItem) {
+    localStorage.setItem(itemName, JSON.stringify(initialValue));
     parsedItem = initialValue;
   } else {
     parsedItem = JSON.parse(localStorageItem);
   }
 
-  const[item, setItem] = React.useState(parsedItem);
+  const [item, setItem] = React.useState(parsedItem);
 
   const saveItem = (newItem) => {
-    const stringifiedTasks = JSON.stringify(newItem);
-    localStorage.setItem('itemName', stringifiedTasks);
+    localStorage.setItem(itemName, JSON.stringify(newItem));
     setItem(newItem);
-  }
+  };
 
-  return {
-    tasks,
-    saveItem,
-  }
-
+  return [item, saveItem];
 }
 
 function App() {
   // const [count, setCount] = useState(0)
   // state of TodoSearch
+  const [todos, saveTodos] = useLocalStorage('TODOS_V1', Tasks);
   const [searchValue, setSearchValue] = React.useState('');
   const [clickCounter, setClickCounter] = React.useState(0);
-  const [todos, setTodos] = React.useState(Tasks);
+  // const [todos, setTodos] = React.useState(Tasks);
+
+
   // const [searchValue, setSearchValue] = React.useState('');
   // const [todosTotal, setTodosTotal] = React.useState(0);
 
@@ -66,7 +68,7 @@ function App() {
       (todo) => todo.id === id
     )
     newTodos[todoIndex].completed = true;
-    setTodos(newTodos);
+    saveTodos(newTodos);
   }
 
   const deletingTodo = (id) => {
@@ -76,11 +78,11 @@ function App() {
     )
     // delete newTodos[todoIndex];
     newTodos.splice(todoIndex, 1);
-    setTodos(newTodos);
+    saveTodos(newTodos);
   }
 
   console.log("TodoSearch - todo state " + searchValue);
-  console.log("clicks", clickCounter)
+  // console.log("clicks", clickCounter)
 
   function TodoClick(){
     return(
