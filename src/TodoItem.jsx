@@ -6,19 +6,25 @@
 //     </div>
 //   );
 // }
+import { FcOk } from "react-icons/fc";
+import { FcFullTrash } from "react-icons/fc";
+import { FcCheckmark } from "react-icons/fc";
+
+
 
 function TodoItem({ todo, completed, onComplete, onDelete }) {
     return (
         <li>
-            <span
-              className={`Icon Icon-check ${completed && 'Icon-check--active'}`}
+          {/* <FcOk/> */}
+            <span             
+              className={`Icon Icon-check ${completed && 'Icon FcOk--active'}`}
               onClick={onComplete}
-            >complete</span>
-            <p>{todo} |  {completed ? 'true' : 'false'} </p>
+            ><FcCheckmark /> click to complete | </span>
+            <span>{todo} {completed === true && <FcOk/>} </span>
             <span
             //   className={`Icon Icon-check ${completed && 'Icon-check--active'}`}
               onClick={onDelete}
-            >delete</span>
+            >| <FcFullTrash /> delete </span>
             
         </li>
     )
