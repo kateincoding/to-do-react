@@ -47,6 +47,13 @@ function App() {
   const totalTodos = todos.length;
   const searchedTodos = todos.filter(todo => (todo.task.toLowerCase().includes(searchValue.toLowerCase())));
 
+  //Effects
+  console.log('log 1')
+  React.useEffect(() => {
+    console.log('Log 2 -> change the total')
+  }, [totalTodos]);
+  console.log('Log 3')
+
   const completingTodo = (id) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
