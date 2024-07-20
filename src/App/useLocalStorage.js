@@ -11,25 +11,46 @@ import React from 'react'
 // localStorage.removeItem('TODOS_V1');
 
 function useLocalStorage(itemName, initialValue) {
-    const localStorageItem = localStorage.getItem(itemName);
+    const [item, setItem] = React.useState(initialValue);
+    const [loading, setLoading] = React.useState(true);
+    const [error, setError] = React.useState(false);
+
+    // encapsulate because we only need to charge this info one time
+    React.useEffect(() => {
+        setTimeout(() => {
+            try {
+                const localStorageItem = localStorage.getItem(itemName);
+                let parsedItem;
+            
+                if (!localStorageItem) {
+                    localStorage.setItem(itemName, JSON.stringify(initialValue));
+                    parsedItem = initialValue;
+                } else {
+                    parsedItem = JSON.parse(localStorageItem);
+                    setItem(parsedItem);
+                }
+                setLoading(false)
+            } catch(e) {
+                setLoading(false)
+                setError(e)
+            }
+        }, 1000);
+    }, []);
   
-    let parsedItem;
     
-    if (!localStorageItem) {
-      localStorage.setItem(itemName, JSON.stringify(initialValue));
-      parsedItem = initialValue;
-    } else {
-      parsedItem = JSON.parse(localStorageItem);
-    }
-  
-    const [item, setItem] = React.useState(parsedItem);
   
     const saveItem = (newItem) => {
       localStorage.setItem(itemName, JSON.stringify(newItem));
       setItem(newItem);
     };
   
-    return [item, saveItem];
+    // return [item, saveItem];
+    return {
+        item,
+        saveItem,
+        loading,
+        error
+    }
   }
 
   export {useLocalStorage}

@@ -7,7 +7,14 @@ function App() {
   // const [count, setCount] = useState(0)
   // state of TodoSearch
   // const [todos, setTodos] = React.useState(Tasks); // before
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+  // const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    loading,
+    error
+  } = useLocalStorage('TODOS_V1', []);
+  
   const [searchValue, setSearchValue] = React.useState('');
   // const [clickCounter, setClickCounter] = React.useState(0);
 
@@ -43,6 +50,8 @@ function App() {
 
   return(
     <AppLayout 
+      loading={loading}
+      error={error}
       completedTodos={completedTodos}
       totalTodos={totalTodos}
       searchValue={searchValue}

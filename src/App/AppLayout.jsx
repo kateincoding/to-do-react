@@ -12,7 +12,9 @@ function AppLayout({
         setSearchValue, 
         searchedTodos, 
         completingTodo, 
-        deletingTodo }) 
+        deletingTodo,
+        loading,
+        error}) 
     {
     return (
         <React.Fragment>
@@ -27,6 +29,9 @@ function AppLayout({
           />
           {/* <TodoClick /> */}
           <TodoList>
+            {loading && <p>Loading...</p>}
+            {!loading && !searchedTodos.length && <p>There are no todos</p>}
+            {error && <p>There was an error: {error}</p>}
             {searchedTodos.map(todo => ( 
               <TodoItem 
                 key={todo.id} 
