@@ -5,6 +5,10 @@ import { TodoList } from '../TodoList'
 import { CreateTodoButton } from '../CreateTodoButton'
 import { TodoItem } from '../TodoItem'
 
+import { TodoLoading } from '../TodoLoading'
+import { EmptyTodo } from '../EmptyTodo'
+
+
 function AppLayout({ 
         completedTodos,
         totalTodos, 
@@ -17,9 +21,10 @@ function AppLayout({
         error}) 
     {
     return (
-        <React.Fragment>
-        {/* <div> */}
+        // <React.Fragment>
+        <div >
           <TodoCounter 
+            class='bg-red-500'
             completed={completedTodos} 
             total={totalTodos} 
           />
@@ -27,25 +32,24 @@ function AppLayout({
             searchValue={searchValue}
             setSearchValue={setSearchValue}
           />
-          {/* <TodoClick /> */}
           <TodoList>
-            {loading && <p>Loading...</p>}
-            {!loading && !searchedTodos.length && <p>There are no todos</p>}
+            {loading && <TodoLoading />}
+            {!loading && !searchedTodos.length && <EmptyTodo />}
             {error && <p>There was an error: {error}</p>}
             {searchedTodos.map(todo => ( 
               <TodoItem 
                 key={todo.id} 
                 todo={todo.task} 
                 completed={todo.completed}
-                onComplete={() => completingTodo(todo.id)}
+                onComplete={(event) => completingTodo(event.target.checked, todo.id)}
                 onDelete={() => deletingTodo(todo.id)}
               /> 
               ))}
           </TodoList>
           
           <CreateTodoButton />
-        </React.Fragment>
-        // </div>
+        {/* </React.Fragment> */}
+        </div>
       );
 }
 

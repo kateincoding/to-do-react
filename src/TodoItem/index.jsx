@@ -6,26 +6,38 @@
 //     </div>
 //   );
 // }
-import { FcOk } from "react-icons/fc";
-import { FcFullTrash } from "react-icons/fc";
-import { FcCheckmark } from "react-icons/fc";
 
+import { Box, Button, IconButton, Checkbox} from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 function TodoItem({ todo, completed, onComplete, onDelete }) {
+  let checked = completed
+
     return (
-        <li>
-          {/* <FcOk/> */}
-            <span             
-              className={`Icon Icon-check ${completed && 'Icon FcOk--active'}`}
-              onClick={onComplete}
-            ><FcCheckmark /> click to complete | </span>
-            <span>{todo} {completed === true && <FcOk/>} </span>
-            <span
-            //   className={`Icon Icon-check ${completed && 'Icon-check--active'}`}
+        <li className='flex justify-center py-2 text-xl' >
+          <Box
+            sx={{
+              p: 2,
+              border: 1,
+              borderRadius: 1,
+              bgcolor: '#af96e5',
+              '&:hover': {
+                bgcolor: '#9d87ce',
+              },
+            }}>
+            <Checkbox
+              checked={checked}
+              onChange={onComplete}
+              inputProps={{ 'aria-label': 'controlled' }}
+            />
+            <span className='inline-flex text-indigo-950'> {todo} </span>
+            <IconButton aria-label="delete" size="large"
               onClick={onDelete}
-            >| <FcFullTrash /> delete </span>
-            
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Box>
         </li>
     )
   }

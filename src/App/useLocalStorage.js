@@ -8,7 +8,7 @@ import React from 'react'
 // ]
 
 // localStorage.setItem('TODOS_V1', JSON.stringify(Tasks));
-// localStorage.removeItem('TODOS_V1');
+//  // localStorage.removeItem('TODOS_V1');
 
 function useLocalStorage(itemName, initialValue) {
     const [item, setItem] = React.useState(initialValue);

@@ -29,12 +29,13 @@ function App() {
   }, [totalTodos]);
   console.log('Log 3')
 
-  const completingTodo = (id) => {
+  const completingTodo = (event, id) => {
+    console.log('event', event);
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
       (todo) => todo.id === id
     )
-    newTodos[todoIndex].completed = true;
+    newTodos[todoIndex].completed = event;
     saveTodos(newTodos);
   }
 
