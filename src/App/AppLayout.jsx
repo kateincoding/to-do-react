@@ -8,20 +8,30 @@ import { TodoItem } from '../TodoItem'
 import { TodoLoading } from '../TodoLoading'
 import { EmptyTodo } from '../EmptyTodo'
 import { TodoContext } from '../TodoContext'
+import { Modal } from '../Modal'
+import { TodoForm } from '../TodoForm'
 
 function AppLayout() {
+  const {loading, 
+    error, 
+    searchedTodos, 
+    completingTodo, 
+    deletingTodo,
+    openModal,
+    setOpenModal
+  } = React.useContext(TodoContext);
     return (
         // <React.Fragment>
         <div >
           <TodoCounter />
           <TodoSearch />
-          <TodoContext.Consumer>
-            {({
+          {/* <TodoContext.Consumer> */}
+            {/* {({
               loading, 
               error, 
               searchedTodos, 
               completingTodo, 
-              deletingTodo}) => (
+              deletingTodo}) => ( */}
                 <TodoList>
                   {loading && <TodoLoading />}
                   {!loading && !searchedTodos.length && <EmptyTodo />}
@@ -36,13 +46,17 @@ function AppLayout() {
                     /> 
                     ))}
                 </TodoList>
-            )}
+            {/* )} */}
 
             
-          </TodoContext.Consumer>
-          
-          
-          <CreateTodoButton />
+          {/* </TodoContext.Consumer> */}
+          <CreateTodoButton 
+            setOpenModal={setOpenModal}
+          />
+          {openModal && (<Modal>
+            <TodoForm />
+          </Modal>
+          )}
         {/* </React.Fragment> */}
         </div>
       );

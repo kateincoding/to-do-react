@@ -47,7 +47,7 @@ const Search = styled('div')(({ theme }) => ({
 function TodoSearch(){
   const {searchValue, setSearchValue} = React.useContext(TodoContext)
   return(
-    <div class='flex justify-center py-10'>
+    <div className='flex justify-center py-10'>
     {/* <input 
     placeholder="search your to do" 
     className='TodoSearch'
