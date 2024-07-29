@@ -2,6 +2,7 @@ import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import { TodoContext } from '../TodoContext';
 // import './TodoSearch.css';
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -43,41 +44,37 @@ const Search = styled('div')(({ theme }) => ({
     },
   }));
 
-function TodoSearch(
-    {searchValue,
-    setSearchValue,}
-){
-    
-
-    return(
-        <div class='flex justify-center py-5'>
-        {/* <input 
-        placeholder="search your to do" 
-        className='TodoSearch'
-        value={searchValue}
-        onChange={(event) =>{
-            // update the state value with the input
-            setSearchValue(event.target.value)
-        }}
-        /> */}
+function TodoSearch(){
+  const {searchValue, setSearchValue} = React.useContext(TodoContext)
+  return(
+    <div className='flex justify-center py-10'>
+    {/* <input 
+    placeholder="search your to do" 
+    className='TodoSearch'
+    value={searchValue}
+    onChange={(event) =>{
+        // update the state value with the input
+        setSearchValue(event.target.value)
+    }}
+    /> */}
 
 
-        <Search>
-            <SearchIconWrapper>
-                <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-                className='TodoSearch'
-                placeholder="Search…"
-                inputProps={{ 'aria-label': 'search' }}
-                value={searchValue}
-                onChange={(event) =>{
-                    setSearchValue(event.target.value)
-                }}
-            />
-        </Search>
-        </div>
-    );
+    <Search>
+        <SearchIconWrapper>
+            <SearchIcon />
+        </SearchIconWrapper>
+        <StyledInputBase
+            className='TodoSearch'
+            placeholder="Search…"
+            inputProps={{ 'aria-label': 'search' }}
+            value={searchValue}
+            onChange={(event) =>{
+                setSearchValue(event.target.value)
+            }}
+        />
+    </Search>
+    </div>
+  );
 }
 
 export { TodoSearch }

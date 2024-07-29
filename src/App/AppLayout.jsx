@@ -7,47 +7,56 @@ import { TodoItem } from '../TodoItem'
 
 import { TodoLoading } from '../TodoLoading'
 import { EmptyTodo } from '../EmptyTodo'
+import { TodoContext } from '../TodoContext'
+import { Modal } from '../Modal'
+import { TodoForm } from '../TodoForm'
 
-
-function AppLayout({ 
-        completedTodos,
-        totalTodos, 
-        searchValue, 
-        setSearchValue, 
-        searchedTodos, 
-        completingTodo, 
-        deletingTodo,
-        loading,
-        error}) 
-    {
+function AppLayout() {
+  const {loading, 
+    error, 
+    searchedTodos, 
+    completingTodo, 
+    deletingTodo,
+    openModal,
+    setOpenModal
+  } = React.useContext(TodoContext);
     return (
         // <React.Fragment>
         <div >
-          <TodoCounter 
-            class='bg-red-500'
-            completed={completedTodos} 
-            total={totalTodos} 
+          <TodoCounter />
+          <TodoSearch />
+          {/* <TodoContext.Consumer> */}
+            {/* {({
+              loading, 
+              error, 
+              searchedTodos, 
+              completingTodo, 
+              deletingTodo}) => ( */}
+                <TodoList>
+                  {loading && <TodoLoading />}
+                  {!loading && !searchedTodos.length && <EmptyTodo />}
+                  {error && <p>There was an error: {error}</p>}
+                  {searchedTodos.map(todo => ( 
+                    <TodoItem 
+                      key={todo.id} 
+                      todo={todo.task} 
+                      completed={todo.completed}
+                      onComplete={(event) => completingTodo(event.target.checked, todo.id)}
+                      onDelete={() => deletingTodo(todo.id)}
+                    /> 
+                    ))}
+                </TodoList>
+            {/* )} */}
+
+            
+          {/* </TodoContext.Consumer> */}
+          <CreateTodoButton 
+            setOpenModal={setOpenModal}
           />
-          <TodoSearch
-            searchValue={searchValue}
-            setSearchValue={setSearchValue}
-          />
-          <TodoList>
-            {loading && <TodoLoading />}
-            {!loading && !searchedTodos.length && <EmptyTodo />}
-            {error && <p>There was an error: {error}</p>}
-            {searchedTodos.map(todo => ( 
-              <TodoItem 
-                key={todo.id} 
-                todo={todo.task} 
-                completed={todo.completed}
-                onComplete={(event) => completingTodo(event.target.checked, todo.id)}
-                onDelete={() => deletingTodo(todo.id)}
-              /> 
-              ))}
-          </TodoList>
-          
-          <CreateTodoButton />
+          {openModal && (<Modal>
+            <TodoForm />
+          </Modal>
+          )}
         {/* </React.Fragment> */}
         </div>
       );

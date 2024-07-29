@@ -1,0 +1,11 @@
+.TodoForm-button {
+    @apply grow m-1 text-white font-bold rounded-lg;
+}
+
+.TodoForm-button--add {
+    @apply  bg-violet-800;
+}
+
+.TodoForm-button--cancel {
+    @apply  bg-red-500;
+}
