@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocalStorage } from './useLocalStorage';
+import { v4 as uuidv4 } from 'uuid';
 
 const TodoContext = React.createContext();
 
@@ -18,10 +19,10 @@ function TodoProvider({ children }) {
       const searchedTodos = todos.filter(todo => (todo.task.toLowerCase().includes(searchValue.toLowerCase())));
     
       const addTodo = (event) => {
-        console.log('event', event);
-        const id = todos[todos.length - 1].id + 1;
+        const newTodos = [...todos];
+        const id = uuidv4();
         const newTodo= { id: id, task: event, completed: false };
-        const newTodos = [...todos, newTodo];
+        newTodos.push(newTodo);
         saveTodos(newTodos);
       }
       
