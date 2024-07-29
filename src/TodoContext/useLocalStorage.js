@@ -1,14 +1,4 @@
-import React from 'react'
-// let Tasks = [
-//   { id: 1, task: 'study', completed: false },
-//   { id: 2, task: 'workout', completed: false },
-//   { id: 3, task: 'work', completed: true },
-//   { id: 4, task: 'eat', completed: false },
-//   { id: 5, task: 'sleep', completed: false }
-// ]
-
-// localStorage.setItem('TODOS_V1', JSON.stringify(Tasks));
-//  // localStorage.removeItem('TODOS_V1');
+import React from 'react';
 
 function useLocalStorage(itemName, initialValue) {
     const [item, setItem] = React.useState(initialValue);
@@ -54,3 +44,15 @@ function useLocalStorage(itemName, initialValue) {
   }
 
   export {useLocalStorage}
+
+// if you want to initialize
+// let Tasks = [
+//   { id: 1, task: 'study', completed: false },
+//   { id: 2, task: 'workout', completed: false },
+//   { id: 3, task: 'work', completed: true },
+//   { id: 4, task: 'eat', completed: false },
+//   { id: 5, task: 'sleep', completed: false }
+// ]
+
+// localStorage.setItem('TODOS_V1', JSON.stringify(Tasks));
+//  // localStorage.removeItem('TODOS_V1');

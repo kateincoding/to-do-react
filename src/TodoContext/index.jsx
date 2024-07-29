@@ -27,7 +27,6 @@ function TodoProvider({ children }) {
       }
       
       const completingTodo = (event, id) => {
-        // console.log('event', event);
         const newTodos = [...todos];
         const todoIndex = newTodos.findIndex(
           (todo) => todo.id === id
@@ -41,7 +40,6 @@ function TodoProvider({ children }) {
         const todoIndex = newTodos.findIndex(
           (todo) => todo.id === id
         )
-        // delete newTodos[todoIndex];
         newTodos.splice(todoIndex, 1);
         saveTodos(newTodos);
       }
