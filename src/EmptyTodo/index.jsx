@@ -2,8 +2,8 @@ import React from 'react';
 
 function EmptyTodo() {
     return (
-        <div>
-            <p>There are no Todos </p>
+        <div className='py-4' >
+            <p>please click below to add some tasks </p>
         </div>
     )
 }

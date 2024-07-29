@@ -1,6 +1,6 @@
 function TodoList({ children }) {
     return(
-      <ul>
+      <ul className="py-2">
         {children}
       </ul>
     )
