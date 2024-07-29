@@ -15,16 +15,13 @@ function TodoItem({ todo, completed, onComplete, onDelete }) {
   let checked = completed
 
     return (
-        <li className='flex justify-center py-2 text-xl' >
+        <li className='flex justify-center py-2 text-xl ' >
           <Box
+            className='bg-violet-400'
             sx={{
               p: 2,
               border: 1,
               borderRadius: 1,
-              bgcolor: '#af96e5',
-              '&:hover': {
-                bgcolor: '#9d87ce',
-              },
             }}>
             <Checkbox
               checked={checked}
