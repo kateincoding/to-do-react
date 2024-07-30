@@ -8,15 +8,15 @@ export default {
     extend: {
       backgroundColor: theme => ({
         ...theme('colors'),
-        'primary': '#9E83B8',
-        'secondary': '#CCBBDB',
+        'primary': 'rgb(124 58 237)',
+        'secondary': '#aa92e8',
         'terciary': '#EBE5D9',
-        'quaternary': '#758976',
+        'quaternary': '#CCBBDB',
         'default': '#AF8A89',
       }),
       textColor: theme => ({
-        'primary': '#9E83B8',
-        'secondary': '#5f6e60',
+        'primary': 'rgb(124 58 237)',
+        'secondary': 'rgb(124 58 237)',
         'terciary': '#758976',
       }),
       // fontFamily:{

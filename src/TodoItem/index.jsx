@@ -9,6 +9,7 @@
 
 import { Box, IconButton, Checkbox} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { deepPurple, purple } from "@mui/material/colors";
 
 
 function TodoItem({ todo, completed, onComplete, onDelete }) {
@@ -27,7 +28,12 @@ function TodoItem({ todo, completed, onComplete, onDelete }) {
               checked={checked}
               onChange={onComplete}
               inputProps={{ 'aria-label': 'controlled' }}
-              color="secondary"
+              sx={{
+                color: deepPurple[400],
+                '&.Mui-checked': {
+                  color: deepPurple[600],
+                },
+              }}
             />
             <span className='inline-flex text-secondary text-medium'> {todo} </span>
             <IconButton aria-label="delete" size="large"
