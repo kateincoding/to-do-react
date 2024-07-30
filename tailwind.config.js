@@ -8,12 +8,12 @@ export default {
     extend: {
       backgroundColor: theme => ({
         ...theme('colors'),
-        'primary': '#CC2D4A',
+        'primary': '#7920bc',
         'secondary': '#FFD700',
         'terciary': '#FFD700',
       }),
       textColor: theme => ({
-        'primary': '#CC2D4A',
+        'primary': '#7920bc',
         'secondary': '#FFD700',
         'terciary': '#FFD700',
       }),

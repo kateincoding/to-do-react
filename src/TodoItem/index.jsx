@@ -17,7 +17,7 @@ function TodoItem({ todo, completed, onComplete, onDelete }) {
     return (
         <li className='flex justify-center py-2 text-xl ' >
           <Box
-            className='bg-violet-400'
+            className='bg-violet-300'
             sx={{
               p: 2,
               border: 1,
@@ -27,6 +27,7 @@ function TodoItem({ todo, completed, onComplete, onDelete }) {
               checked={checked}
               onChange={onComplete}
               inputProps={{ 'aria-label': 'controlled' }}
+              color="default"
             />
             <span className='inline-flex text-indigo-950'> {todo} </span>
             <IconButton aria-label="delete" size="large"
