@@ -8,14 +8,16 @@ export default {
     extend: {
       backgroundColor: theme => ({
         ...theme('colors'),
-        'primary': '#7920bc',
-        'secondary': '#FFD700',
-        'terciary': '#FFD700',
+        'primary': '#9E83B8',
+        'secondary': '#CCBBDB',
+        'terciary': '#EBE5D9',
+        'quaternary': '#758976',
+        'default': '#AF8A89',
       }),
       textColor: theme => ({
-        'primary': '#7920bc',
-        'secondary': '#FFD700',
-        'terciary': '#FFD700',
+        'primary': '#9E83B8',
+        'secondary': '#5f6e60',
+        'terciary': '#758976',
       }),
       // fontFamily:{
       //   Montserrat: ['Montserrat', 'sans-serif'],

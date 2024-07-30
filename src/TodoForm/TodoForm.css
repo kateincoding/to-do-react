@@ -3,9 +3,9 @@
 }
 
 .TodoForm-button--add {
-    @apply  bg-violet-800;
+    @apply  bg-primary;
 }
 
 .TodoForm-button--cancel {
-    @apply  bg-red-500;
+    @apply  bg-quaternary;
 }

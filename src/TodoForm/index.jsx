@@ -27,10 +27,11 @@ function TodoForm() {
         onSubmit={onSubmit}
         >
             <label 
-            className='text-center py-1 text-lg font-semibold'
+            className='text-center p-5 text-lg font-bold text-primary '
             placeholder="Add a new task"
             >Write your new TODO</label>
             <textarea 
+            className='p-2'
             placeholder="Add a new task"
             value={newTodoValue}
             onChange={onChange}
